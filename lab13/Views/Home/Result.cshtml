@@ -1,0 +1,27 @@
+﻿@model QuizGenerator
+@{
+    ViewData["Title"] = "Hello Quiz";
+}
+
+<h1>Quiz results</h1>
+
+@if (!@Model.isEmpty())
+{
+    <p>Right answers @Model.rightAnswers of @Model.expressions.Count</p>
+}
+
+<ul class="list">
+    @if (@Model.isEmpty()) {
+        <li class="bold">No data</li>
+    }
+    else {
+        int counter = 0;
+
+        foreach (var expression in @Model.expressions)
+        {
+            counter++;
+
+            <li>@counter. @expression.firstValue @expression.operation @expression.secondValue = @expression.userAnswer</li>
+        }
+    }
+</ul>
